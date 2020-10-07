@@ -1,7 +1,14 @@
-const http = require('http');
+// @ts-check
+const http = require('http')
 
-http.createServer(function(req, res){
-    res.writeHead(201, {'Content-Type': 'text/html'});
-    res.write('Hello Http Server 3\n');
+/**
+ * 
+ * @param {http.IncomingMessage} req 
+ * @param {http.ServerResponse} res 
+ */
+const server = function (req, res) {
+    res.writeHead(201, { 'Content-Type': 'text/html' });
+    res.write('Hello Http Server 31\n');
     res.end();
-}).listen(3001);
+}
+http.createServer(server).listen(3001);

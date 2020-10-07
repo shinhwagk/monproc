@@ -1,4 +1,4 @@
 {
-    "main": "index.js",
-    "watch": "test"
+    "bootstrap": "index.js",
+    "watch": "test" 
 }

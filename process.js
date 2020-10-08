@@ -1,5 +1,5 @@
-import { spawn } from 'child_process'
-import { readFileSync, watch, statSync, watchFile, readdirSync } from 'fs'
+const { spawn } = require('child_process')
+const { readFileSync, statSync, readdirSync } = require('fs')
 
 function extractFiles(p, _files = []) {
     if (statSync(p).isDirectory()) {

@@ -1,12 +1,12 @@
 {
   "name": "monproc",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "monitor node process",
   "bin": {
     "monproc": "./index.js"
   },
   "files": [
-    "process.js"
+    "monproc.js"
   ],
   "repository": {
     "type": "git",

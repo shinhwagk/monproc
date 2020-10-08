@@ -22,7 +22,7 @@ function runningBootstrap(bootstrap) {
     const daemon = spawn('node', [bootstrap]);
     daemon.stdout.on('data', (data) => {
         // console.log(`stdout: ${data}`);
-        process.stdout.write(format('\x1b[32mstderr\x1b[0m: \x1b[36m%s\x1b[0m', data));
+        process.stdout.write(format('\x1b[32mstdout\x1b[0m: \x1b[36m%s\x1b[0m', data));
     });
     daemon.stderr.on('data', (data) => {
         process.stdout.write(format('\x1b[32mstderr\x1b[0m: \x1b[31m%s\x1b[0m', data));

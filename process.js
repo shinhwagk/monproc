@@ -36,7 +36,7 @@ function runningBootstrap(bootstrap) {
 }
 
 function readConfig() {
-    const c = JSON.parse(readFileSync('process.json', { encoding: 'utf8' }))
+    const c = JSON.parse(readFileSync('.monproc.json', { encoding: 'utf8' }))
     if (typeof c.watch === 'string') {
         c.watch = [c.watch]
     }

@@ -11,4 +11,4 @@ const server = function (req, res) {
     res.write('Hello Http Server 31\n');
     res.end();
 }
-http.createServer(server).listen(3001);
+http.createServer(server).listen(3001, () => console.log("start"));

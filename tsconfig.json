@@ -3,6 +3,9 @@
         "module": "CommonJS",
         "target": "ESNext",
         "outDir": "dist",
+        "moduleResolution": "node"
     },
-    "files": ["process.ts"]
+    "files": [
+        "process.ts"
+    ]
 }

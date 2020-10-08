@@ -1,9 +1,9 @@
 {
-  "name": "nrw",
+  "name": "monproc",
   "version": "1.0.0",
   "description": "",
   "bin": {
-    "nrw": "./dist/index.js"
+    "monproc": "./index.js"
   },
   "files": [
     "tsconfig.json",

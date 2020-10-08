@@ -1,5 +1,6 @@
 const { spawn } = require('child_process')
 const { readFileSync, statSync, readdirSync } = require('fs')
+const { format } = require('util')
 
 function extractFiles(p, _files = []) {
     if (statSync(p).isDirectory()) {
@@ -17,20 +18,17 @@ function extractFiles(p, _files = []) {
     return _files;
 }
 
-
 function runningBootstrap(bootstrap) {
     const daemon = spawn('node', [bootstrap]);
     daemon.stdout.on('data', (data) => {
-        console.log(`stdout: ${data}`);
+        // console.log(`stdout: ${data}`);
+        process.stdout.write(format('\x1b[32mstderr\x1b[0m: \x1b[36m%s\x1b[0m', data));
     });
     daemon.stderr.on('data', (data) => {
-        console.error(`stderr: ${data}`);
-    });
-    daemon.on('close', (code) => {
-        console.log(`child process close with code ${code}`);
+        process.stdout.write(format('\x1b[32mstderr\x1b[0m: \x1b[31m%s\x1b[0m', data));
     });
     daemon.on('exit', (code, signal) => {
-        console.log(`child process exited with code ${code} ${signal}`);
+        process.stdout.write(format('\x1b[32mexit\x1b[0m: \x1b[33m%s,%s\x1b[0m', code, signal));
     })
     return daemon.pid
 }

@@ -1,7 +1,7 @@
 {
   "name": "monproc",
-  "version": "1.0.2",
-  "description": "",
+  "version": "1.0.4",
+  "description": "monitor node process",
   "bin": {
     "monproc": "./index.js"
   },

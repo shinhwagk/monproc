@@ -1,4 +1,5 @@
 {
-    "bootstrap": "index.js",
-    "watch": "test" 
+    "bootstrap": "test/index.js",
+    "watch": "test",
+    "interval": 1000
 }

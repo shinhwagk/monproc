@@ -1,27 +1,7 @@
 import { spawn } from 'child_process'
 import { readFileSync, watch, statSync, watchFile, readdirSync } from 'fs'
 
-// const GlobalState = {
-//     pid: 0,
-//     files: [],
-//     bootstrap: '',
-// }
-
-interface Configure {
-    bootstrap: string
-    watch: string[] | string
-    interval: number
-}
-
-interface GlobalState {
-    pid: number;
-    files: string[];
-    bootstrap: string;
-    conf: Configure;
-    filesMtime: { [file: string]: number }
-}
-
-function extractFiles(p: string, _files: string[] = []) {
+function extractFiles(p, _files = []) {
     if (statSync(p).isDirectory()) {
         for (const i of readdirSync(p)) {
             const name = p + '/' + i;
@@ -38,7 +18,7 @@ function extractFiles(p: string, _files: string[] = []) {
 }
 
 
-function runningBootstrap(bootstrap: string): number {
+function runningBootstrap(bootstrap) {
     const daemon = spawn('node', [bootstrap]);
     daemon.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
@@ -55,15 +35,15 @@ function runningBootstrap(bootstrap: string): number {
     return daemon.pid
 }
 
-function readConfig(): Configure {
+function readConfig() {
     const c = JSON.parse(readFileSync('process.json', { encoding: 'utf8' }))
     if (typeof c.watch === 'string') {
         c.watch = [c.watch]
     }
-    return c as Configure
+    return c
 }
 
-function watchStateChange(files: string[], state: { [file: string]: number }): boolean {
+function watchStateChange(files, state) {
     const stateFiles = Object.keys(state)
     let isChanged = false;
     for (const f of stateFiles.filter(f => !files.includes(f))) {
@@ -73,7 +53,7 @@ function watchStateChange(files: string[], state: { [file: string]: number }): b
     return isChanged
 }
 
-function watchFilesChange(files: string[], state: { [file: string]: number }): boolean {
+function watchFilesChange(files, state) {
     let isChanged = false;
     for (const file of files) {
         const currMtime = statSync(file).mtimeMs
@@ -94,7 +74,7 @@ async function main() {
         conf.watch = [conf.watch]
     }
     conf.watch = conf.watch.concat(conf.bootstrap)
-    const watcherState: { [file: string]: number } = {}
+    const watcherState = {}
     const runningState = { pid: 0 }
 
     while (true) {

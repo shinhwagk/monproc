@@ -6,6 +6,6 @@
         "moduleResolution": "node"
     },
     "files": [
-        "process.ts"
+        "process.js"
     ]
 }

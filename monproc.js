@@ -85,7 +85,7 @@ async function main() {
                     process.kill(runningState.pid, 0)
                 }
             } catch (e) {
-                console.log(e.message)
+                process.stdout.write(format('\x1b[32mstderr\x1b[0m: \x1b[31m%s\x1b[0m', e.message));
             }
             runningState.pid = runningBootstrap(conf.bootstrap)
         }
